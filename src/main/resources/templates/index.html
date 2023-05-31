@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+
+    <title>アプリリスト</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/jquery.toast.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <script type="text/javascript" th:src="@{/js/jquery-1.11.0.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.toast.js}"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body class="ng-scope">
+<nav class="navbar navbar-transparent fade-out navbar-black" role="navigation">
+    <div class="navbar-header"><a class="navbar-brand" href="/apps"><i class="icon-logo"></i> </a></div>
+    <div class="collapse navbar-collapse navbar-ex1-collapse ng-scope" ng-controller="NavbarController">
+        <div class="dropdown">
+            <div></div>
+        </div>
+    </div>
+</nav>
+<div class="menu-toggle fade-out"><i class="icon-menu"></i></div>
+<div class="navbar-wrapper ng-scope">
+    <div ng-controller="NavbarController" class="ng-scope">
+        <div class="navbar-header-wrap">
+            <div class="middle-wrapper">
+                <nav>
+                    <h1 class="navbar-title logo">
+                        <i class="icon-logo"></i>
+                    </h1>
+                    <i class="icon-angle-right"></i>
+                    <div class="navbar-title primary-title">
+                        <a class="ng-binding" th:href="${baseURL} + 'apps'">アプリケーション</a>
+                    </div>
+                    <i class="icon-angle-right ng-hide">1</i>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div><!-- ngInclude: '/templates_manage/upload_modal.html' -->
+<section data-ui-view="" class="ng-scope" style="">
+    <div class="page-apps ng-scope">
+        <div class="middle-wrapper">
+        </div><!-- ngIf: !appsReady -->
+        <div class="middle-wrapper container-fluid" ng-show="appsReady">
+            <div class="apps row">
+
+
+                <div class="modal fade" id="loadingModal" backdrop="static" keyboard="false">
+                    　　<div style="width: 200px;height:20px; z-index: 20000; position: absolute; text-align: center; left: 50%; top: 50%;margin-left:-100px;margin-top:-10px">
+                    <span id="loadText" class="ng-scope" style="font-size: 25px"></span>
+                    　　</div>
+                </div>
+
+                <upload-card id="uploadCard" class="components-upload-card col-xs-4 col-sm-4 col-md-4 app-animator app-animator1">
+                    <div class="card text-center">
+                        <div class="dashed-space">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <i class="icon-upload-cloud2"></i>
+                                        <div class="text drag-state">
+                                            <span id="upload-progress" translate="DRAG_TO_UPLOAD" class="ng-scope">ここにドラッグしてアップロードします。</span>
+                                            <span translate="DROP_TO_UPLOAD" class="ng-scope">早く手を放す</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </upload-card>
+
+                <div th:each="app : ${apps}" class="col-xs-4 col-sm-4 col-md-4 app-animator app-animator1 ng-scope">
+                    <div th:class="'card app '  + @{'card-' + ${app.platform}}">
+                        <i th:class="'type-icon '  + @{'icon-' + ${app.platform}}"></i>
+                        <div class="type-mark"></div>
+                        <a class="appicon" th:href="'/apps/' + ${app.id}" target="_blank">
+                            <img class="icon ng-isolate-scope" width="100" height="100" th:src="@{'/' + ${app.icon}}"/>
+                        </a>
+                        <!-- ngIf: app.has_combo --><br>
+                        <p class="appname" th:data="@{${baseURL} + 'apps/' + ${app.id}}">
+                            <i class="icon-owner"></i>
+                            <span class="ng-binding_span">[[${app.name}]]</span></p>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td class="ng-binding_td">URL:</td>
+                                <td><span class="ng-binding_span">[[${baseURL}]]s/[[${app.shortCode}]]</span></td>
+                            </tr>
+<!--                            <tr>-->
+<!--                                <td class="ng-binding_td">Application ID:</td>-->
+<!--                                <td>-->
+<!--                                    <span title="com.mistong.ewt360" class="ng-binding_span">[[${app.bundleID}]]</span>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+                            <tr>
+                                <td class="ng-binding_td">バージョン:</td>
+                                <td>
+                                    <span class="ng-binding_span">[[${app.version}]] ( Build [[${app.buildVersion}]] )</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="action">
+                            <a class="ng-binding" th:href="'/apps/' + ${app.id}">
+                                <i class="icon-pen"></i> 表示</a>
+                            <a th:href="@{${baseURL}+'s/'+${app.shortCode}}" target="_blank" class="ng-binding">
+                                <i class="icon-eye"></i> ダウンロード</a>
+<!--                            <button class="btn btn-remove ng-scope" th:data="${app.id}">-->
+<!--                                <i class="icon icon-trash"></i>-->
+<!--                            </button>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div alert-bar="" class="alert-bar ng-hide" ng-show="anyErrors">
+    <div class="action" ng-click="close()"></div>
+    <div class="inner">
+        <p ng-bind="errors" class="ng-binding"></p>
+    </div>
+</div>
+<script type="text/javascript">
+
+    var dashboard = document.getElementById("uploadCard")
+    dashboard.addEventListener("dragover", function (e) {
+        e.preventDefault()
+        e.stopPropagation()
+    })
+    dashboard.addEventListener("dragenter", function (e) {
+        e.preventDefault()
+        e.stopPropagation()
+    })
+    dashboard.addEventListener("drop", function (e) {
+        // 必须要禁用浏览器默认事件
+        e.preventDefault()
+        e.stopPropagation()
+        var files = this.files || e.dataTransfer.files
+        var file = files[0]
+        //上传
+        var xhr = new XMLHttpRequest();
+        xhr.open("post", "/app/upload", true);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+        // 获取上传进度
+        xhr.upload.onprogress = function (event) {
+            if (event.lengthComputable) {
+                $('#loadingModal').modal({backdrop: 'static', keyboard: false});
+                var percent = Math.floor(event.loaded / event.total * 100);
+                var uploadText = "ここにドラッグしてアップロードします。"
+                var uploadElement = document.getElementById("loadText")
+                if (percent < 100) {
+                    uploadElement.innerText = "アップロード中:" + percent + "%"
+                } else {
+                    uploadElement.innerText = uploadText
+                }
+            }
+        };
+        // 上传完成
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                var result = JSON.parse(xhr.response);
+                console.log(result);
+                var success = result.code == 0;
+                $.toast({text: result.msg, icon: success ? 'success' : 'error'});
+                if (success) {
+                    $('#loadingModal').modal('hide');
+                    window.location.href = window.location.href;
+                    window.location.reload;
+                }
+
+            }
+        }
+        var fd = new FormData();
+        fd.append('file', file);
+        xhr.send(fd);
+    })
+
+    $(".btn-remove").click(function () {
+        var url = "/app/delete/" + $(this).attr("data");
+        $.ajax({
+            url: url, success: function (result) {
+                console.log(result);
+                if (result.code != 0) {
+                    $.toast({text: result.msg, icon: 'error'});
+                } else {
+                    window.location.href = window.location.href
+                    window.location.reload
+                }
+            }
+        });
+    });
+    $(".appname").click(function () {
+        window.open($(this).attr("data"))
+    });
+</script>
+</body>
+
+</html>

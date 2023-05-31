@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+
+    <title>应用列表</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/jquery.toast.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <script type="text/javascript" th:src="@{/js/jquery-1.11.0.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.toast.js}"></script>
+</head>
+
+<body class="ng-scope">
+<nav class="navbar navbar-transparent fade-out navbar-black" role="navigation">
+    <div class="navbar-header"><a class="navbar-brand" href="/apps"><i class="icon-logo"></i> </a></div>
+    <div class="collapse navbar-collapse navbar-ex1-collapse ng-scope" ng-controller="NavbarController">
+        <div class="dropdown">
+            <div></div>
+        </div>
+    </div>
+</nav>
+<div class="menu-toggle fade-out"><i class="icon-menu"></i></div>
+<div class="navbar-wrapper ng-scope">
+    <div ng-controller="NavbarController" class="ng-scope">
+        <div class="navbar-header-wrap">
+            <div class="middle-wrapper">
+                <nav>
+                    <h1 class="navbar-title logo">
+                        <i class="icon-logo"></i>
+                    </h1>
+                    <i class="icon-angle-right"></i>
+                    <div class="navbar-title primary-title">
+                        <a class="ng-binding" th:href="${baseURL} + 'apps'">アプリケーション</a>
+                    </div>
+                    <i class="icon-angle-right ng-hide">1</i>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div><!-- ngInclude: '/templates_manage/upload_modal.html' -->
+<section data-ui-view="" class="ng-scope" style="">
+    <div class="page-apps ng-scope">
+        <div class="middle-wrapper">
+        </div><!-- ngIf: !appsReady -->
+        <div class="middle-wrapper container-fluid" ng-show="appsReady" >
+            <div class="apps row flex">
+                <div th:each="app : ${apps}"  class="app-animator app-animator1 ng-scope">
+                    <div th:class="'card app '  + @{'card-' + ${app.platform}}">
+                        <i th:class="'type-icon '  + @{'icon-' + ${app.platform}}"></i>
+                        <div class="type-mark"></div>
+                        <a class="appicon" target="_blank">
+                            <img class="icon ng-isolate-scope" width="100" height="100" th:src="@{'/' + ${app.icon}}"/>
+                        </a>
+                        <!-- ngIf: app.has_combo --><br>
+                        <p class="appname" th:data="@{${baseURL} + 'apps/' + ${app.id}}">
+                            <i class="icon-owner"></i>
+                            <span class="ng-binding_span">[[${app.name}]]</span></p>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td class="ng-binding_td">URL:</td>
+                                <td><span class="ng-binding_span">[[${baseURL}]]s/[[${app.shortCode}]]</span></td>
+                            </tr>
+<!--                            <tr>-->
+<!--                                <td class="ng-binding_td">Application ID:</td>-->
+<!--                                <td>-->
+<!--                                    <span title="com.mistong.ewt360" class="ng-binding_span">[[${app.bundleID}]]</span>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+                            <tr>
+                                <td class="ng-binding_td">バージョン:</td>
+                                <td>
+                                    <span class="ng-binding_span">[[${app.version}]] ( Build [[${app.buildVersion}]] )</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="action ng-binding_button" style="padding: 40px 0 40px 0px;text-align: center;">
+                            <a th:href="@{${baseURL}+'s/'+${app.shortCode}}" target="_blank" class="ng-binding">
+                                <i class="icon-eye"></i> ダウンロード</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div alert-bar="" class="alert-bar ng-hide" ng-show="anyErrors">
+    <div class="action" ng-click="close()"></div>
+    <div class="inner">
+        <p ng-bind="errors" class="ng-binding"></p>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $(".btn-remove").click(function () {
+        var url = "/app/delete/" + $(this).attr("data");
+        $.ajax({
+            url: url, success: function (result) {
+                console.log(result);
+                if (result.code != 0) {
+                    $.toast({text: result.msg, icon: 'error'});
+                } else {
+                    window.location.href = window.location.href
+                    window.location.reload
+                }
+            }
+        });
+    });
+    $(".appname").click(function () {
+        window.open($(this).attr("data"))
+    });
+</script>
+</body>
+
+</html>
