@@ -39,8 +39,8 @@ public class PackageViewModel {
     @SuppressWarnings("unchecked")
     public PackageViewModel(Package aPackage, PathManager pathManager) {
         this.downloadURL = pathManager.getBaseURL(false) + "p/" + aPackage.getId();
-        this.safeDownloadURL = pathManager.getBaseURL(true) + "p/" + aPackage.getId();
-        this.iconURL = pathManager.getPackageResourceURL(aPackage, true) + "icon.png";
+        this.safeDownloadURL = pathManager.getBaseURL(false) + "p/" + aPackage.getId();
+        this.iconURL = pathManager.getPackageResourceURL(aPackage, false) + "icon.png";
         this.id = aPackage.getId();
         this.version = aPackage.getVersion();
         this.bundleID = aPackage.getBundleID();

@@ -70,9 +70,9 @@ function getPackageList() {
                 var buildVersion = package.buildVersion;
                 var displayTime = package.displayTime;
                 var type = package.type;
-                var downloadURL = "appPublish/"+package.downloadURL;
+                var downloadURL = package.downloadURL;
                 var displaySize = package.displaySize;
-                var previewURL = "appPublish/"+package.previewURL;
+                var previewURL =  package.previewURL;
                 var id = package.id;
                 var message = package.message;
                 packageList += '<li class="package_index_' + id + '">';

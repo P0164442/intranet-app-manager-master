@@ -145,7 +145,7 @@ public class PathManager {
                 portString = "";
             }
 
-            String baseURL = protocol + "://" + domain + portString + "/";
+            String baseURL = protocol + "://" + domain   + "/";
 
             //解决重复读配置文件
             if (isHttps) {
