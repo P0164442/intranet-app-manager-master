@@ -36,7 +36,7 @@
                     </h1>
                     <i class="icon-angle-right"></i>
                     <div class="navbar-title primary-title">
-                        <a class="ng-binding" th:href="${baseURL} + 'apps'">アプリケーション</a>
+                        <a class="ng-binding" th:href="${baseURL} + 'appPublish/apps'">アプリケーション</a>
                     </div>
                     <i class="icon-angle-right ng-hide">1</i>
                 </nav>
@@ -58,14 +58,14 @@
                             <img class="icon ng-isolate-scope" width="100" height="100" th:src="@{'/' + ${app.icon}}"/>
                         </a>
                         <!-- ngIf: app.has_combo --><br>
-                        <p class="appname" th:data="@{${baseURL} + 'apps/' + ${app.id}}">
+                        <p class="appname" th:data="@{${baseURL} + 'appPublish/apps/' + ${app.id}}">
                             <i class="icon-owner"></i>
                             <span class="ng-binding_span">[[${app.name}]]</span></p>
                         <table>
                             <tbody>
                             <tr>
                                 <td class="ng-binding_td">URL:</td>
-                                <td><span class="ng-binding_span">[[${baseURL}]]s/[[${app.shortCode}]]</span></td>
+                                <td><span class="ng-binding_span">[[${baseURL}]]appPublish/s/[[${app.shortCode}]]</span></td>
                             </tr>
 <!--                            <tr>-->
 <!--                                <td class="ng-binding_td">Application ID:</td>-->
@@ -82,7 +82,7 @@
                             </tbody>
                         </table>
                         <div class="action ng-binding_button" style="padding: 40px 0 40px 0px;text-align: center;">
-                            <a th:href="@{${baseURL}+'s/'+${app.shortCode}}" target="_blank" class="ng-binding">
+                            <a th:href="@{${baseURL}+'appPublish/s/'+${app.shortCode}}" target="_blank" class="ng-binding">
                                 <i class="icon-eye"></i> ダウンロード</a>
                         </div>
                     </div>

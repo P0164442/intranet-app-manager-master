@@ -36,7 +36,7 @@ public class PackageService {
             // 更新文件名
             aPackage.setFileName(fileName);
 
-            String packagePath = PathManager.getFullPath(aPackage);
+            String packagePath = "/appPublish"+PathManager.getFullPath(aPackage);
             String tempIconPath = PathManager.getTempIconPath(aPackage);
             String iconPath = packagePath + File.separator + "icon.png";
             String sourcePath = packagePath + File.separator + fileName;
