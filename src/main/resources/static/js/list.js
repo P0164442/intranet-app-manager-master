@@ -3,7 +3,7 @@
  */
 function getWebHooks() {
     var appId = $("#appId").val();
-    var url = "/webHook/find/" + appId;
+    var url = "/appPublish/webHook/find/" + appId;
     $.post(url, function (result) {
         $(".configrations").children(".config-name").remove();
         var content = "";
@@ -49,7 +49,7 @@ function editWebHook(e) {
  */
 function getPackageList() {
     var appId = $("#appId").val();
-    var url = "/packageList/" + appId;
+    var url = "/appPublish/packageList/" + appId;
     $.post(url, function (result) {
         if (result.success) {
             var packages = result.packages;
@@ -64,14 +64,15 @@ function getPackageList() {
             packageList += '</div>';
             packageList += '</li>';
             for (var i = 0; i < packages.length; i++) {
+                console.log(packages[i])
                 var package = packages[i];
                 var version = package.version;
                 var buildVersion = package.buildVersion;
                 var displayTime = package.displayTime;
                 var type = package.type;
-                var downloadURL = package.downloadURL;
+                var downloadURL = "appPublish/"+package.downloadURL;
                 var displaySize = package.displaySize;
-                var previewURL = package.previewURL;
+                var previewURL = "appPublish/"+package.previewURL;
                 var id = package.id;
                 var message = package.message;
                 packageList += '<li class="package_index_' + id + '">';
@@ -112,7 +113,7 @@ function getPackageList() {
                 packageList += '</li >';
             }
             packageList += '<li class="more ng-hide" ng-show="currentApp.releases.current_page &lt; currentApp.releases.total_pages">';
-            packageList += '<button ng-click="moreRelease()" class="ng-binding">显示更多版本</button></li>';
+            packageList += '<button ng-click="moreRelease()" class="ng-binding">詳細バージョンの表示</button></li>';
             $("#app-activity-panel").empty();
             $("#app-activity-panel").append(packageList);
 
@@ -165,21 +166,21 @@ function resetForm() {
  * 添加 webHook
  */
 function add() {
-    postWithURL("/webHook/add")
+    postWithURL("/appPublish/webHook/add")
 }
 
 /**
  * 更新 webHook
  */
 function update() {
-    postWithURL("/webHook/update")
+    postWithURL("/appPublish/webHook/update")
 }
 
 /**
  * 删除 webHook
  */
 function remove() {
-    postWithURL("/webHook/delete")
+    postWithURL("/appPublish/webHook/delete")
 }
 
 /**
@@ -222,7 +223,7 @@ function bindActions() {
 
     $(".app-delete").click(function () {
         var id = $(this).attr("data");
-        var url = "/p/delete/" + id;
+        var url = "/appPublish/p/delete/" + id;
         var li = "package_index_" + id;
         console.log(li);
         var self = $("." + li);
@@ -275,7 +276,7 @@ $(function () {
         //     window.location.href = "/apps"
         // });
 
-        var url = "/app/delete/" + $(this).attr("data");
+        var url = "/appPublish/app/delete/" + $(this).attr("data");
         $.ajax({
             url: url, success: function (result) {
                 console.log(result);

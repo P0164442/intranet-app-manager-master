@@ -44,11 +44,11 @@ public class Application {
     public Connector httpConnector() {
         Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
         int httpPort = Integer.parseInt(environment.getProperty("server.http.port"));
-        int httpsPort = Integer.parseInt(environment.getProperty("server.port"));
+//        int httpsPort = Integer.parseInt(environment.getProperty("server.port"));
         connector.setScheme("http");
         connector.setPort(httpPort);
         connector.setSecure(true);
-        connector.setRedirectPort(httpsPort);
+//        connector.setRedirectPort(httpsPort);
         return connector;
     }
 
