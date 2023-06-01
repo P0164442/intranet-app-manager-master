@@ -6,19 +6,19 @@
   <meta http-equiv="x-ua-compatible" content="IE=edge">
   <meta name="renderer" content="webkit">
   <title class="ng-binding">[[${package.name}]] - アプリのダイナミック</title>
-  <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}" />
-  <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
-  <link rel="stylesheet" th:href="@{/css/index.css}">
-  <link rel="stylesheet" th:href="@{/css/jquery.toast.css}">
-  <script type="text/javascript" th:src="@{/js/jquery-1.11.0.min.js}"></script>
-  <script type="text/javascript" th:src="@{/js/jquery.toast.js}"></script>
-  <script type="text/javascript" th:src="@{/js/clipboard.min.js}"></script>
+  <link rel="icon" type="image/x-icon" th:href="@{/appPublish/images/favicon.ico}" />
+  <link rel="stylesheet" th:href="@{/appPublish/css/bootstrap.css}">
+  <link rel="stylesheet" th:href="@{/appPublish/css/index.css}">
+  <link rel="stylesheet" th:href="@{/appPublish/css/jquery.toast.css}">
+  <script type="text/javascript" th:src="@{/appPublish/js/jquery-1.11.0.min.js}"></script>
+  <script type="text/javascript" th:src="@{/appPublish/js/jquery.toast.js}"></script>
+  <script type="text/javascript" th:src="@{/appPublish/js/clipboard.min.js}"></script>
 </head>
 
 <body class="ng-scope">
   <nav class="navbar navbar-transparent fade-out navbar-black">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/apps"><i class="icon-logo"></i></a>
+      <a class="navbar-brand" href="/appPublish/apps"><i class="icon-logo"></i></a>
     </div>
     <div class="collapse navbar-collapse navbar-ex1-collapse ng-scope">
       <div class="dropdown">
@@ -40,7 +40,7 @@
             </h1>
             <i class="icon-angle-right"></i>
             <div class="navbar-title primary-title">
-              <a class="ng-binding" href="/apps">アプリケーション</a>
+              <a class="ng-binding" href="/appPublish/apps">アプリケーション</a>
             </div>
             <i class="icon-angle-right"></i>
             <div class="navbar-title secondary-title ng-binding" style="">
@@ -57,7 +57,7 @@
       <div class="banner has-devices">
         <div class="middle-wrapper clearfix">
           <div id="app-activity-icon" class="pull-left icon-container appicon">
-            <img th:src="'/' + ${package.icon}" width="100" height="100" class="change_icon ng-isolate-scope" />
+            <img th:src="'/appPublish/' + ${package.icon}" width="100" height="100" class="change_icon ng-isolate-scope" />
           </div>
           <div class="badges">
             <span tooltip-top="" tooltip="クリップボードにコピー" id="js-app-short-copy-trigger"

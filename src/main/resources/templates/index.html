@@ -8,18 +8,18 @@
     <meta name="renderer" content="webkit">
 
     <title>アプリリスト</title>
-    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}"/>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
-    <link rel="stylesheet" th:href="@{/css/jquery.toast.css}">
-    <link rel="stylesheet" th:href="@{/css/index.css}">
-    <script type="text/javascript" th:src="@{/js/jquery-1.11.0.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/jquery.toast.js}"></script>
+    <link rel="icon" type="image/x-icon" th:href="@{/appPublish/images/favicon.ico}"/>
+    <link rel="stylesheet" th:href="@{/appPublish/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/appPublish/css/jquery.toast.css}">
+    <link rel="stylesheet" th:href="@{/appPublish/css/index.css}">
+    <script type="text/javascript" th:src="@{/appPublish/js/jquery-1.11.0.min.js}"></script>
+    <script type="text/javascript" th:src="@{/appPublish/js/jquery.toast.js}"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body class="ng-scope">
 <nav class="navbar navbar-transparent fade-out navbar-black" role="navigation">
-    <div class="navbar-header"><a class="navbar-brand" href="/apps"><i class="icon-logo"></i> </a></div>
+    <div class="navbar-header"><a class="navbar-brand" href="/appPublish/apps"><i class="icon-logo"></i> </a></div>
     <div class="collapse navbar-collapse navbar-ex1-collapse ng-scope" ng-controller="NavbarController">
         <div class="dropdown">
             <div></div>
@@ -150,7 +150,7 @@
         var file = files[0]
         //上传
         var xhr = new XMLHttpRequest();
-        xhr.open("post", "/app/upload", true);
+        xhr.open("post", "/appPublish/app/upload", true);
         xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
         // 获取上传进度
         xhr.upload.onprogress = function (event) {
@@ -187,7 +187,7 @@
     })
 
     $(".btn-remove").click(function () {
-        var url = "/app/delete/" + $(this).attr("data");
+        var url = "/appPublish/app/delete/" + $(this).attr("data");
         $.ajax({
             url: url, success: function (result) {
                 console.log(result);

@@ -11,10 +11,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="white">
     <meta name="format-detection" content="telephone=no">
-    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}"/>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
-    <link rel="stylesheet" th:href="@{/css/index.css}">
-    <script type="text/javascript" th:src="@{/js/jquery-1.11.0.min.js}"></script>
+    <link rel="icon" type="image/x-icon" th:href="@{/appPublish/images/favicon.ico}"/>
+    <link rel="stylesheet" th:href="@{/appPublish/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/appPublish/css/index.css}">
+    <script type="text/javascript" th:src="@{/appPublish/js/jquery-1.11.0.min.js}"></script>
     <title>登録</title>
 </head>
 
@@ -45,7 +45,7 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <a href="/account/signin" class="btn btn-default btn-lg btn-block">ログイン</a>
+                <a href="/appPublish/account/signin" class="btn btn-default btn-lg btn-block">ログイン</a>
             </div>
         </div>
     </form>
@@ -59,12 +59,12 @@
         $.ajax({
             type: "POST",
             contentType: "application/json;charset=UTF-8",
-            url: "/account/register",
+            url: "/appPublish/account/register",
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (result) {
                 if (result.code == 0) {
-                    window.location.href = "/apps"
+                    window.location.href = "/appPublish/apps"
                 }
                 console.log(result);
             }

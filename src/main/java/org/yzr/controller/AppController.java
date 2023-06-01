@@ -31,8 +31,10 @@ public class AppController {
 
     @GetMapping("/")
     public String index(HttpServletRequest request) {
-        return "redirect:apps";
+//        return "redirect:apps";
+        return "signin";
     }
+
 
 
     @RequiresAuthentication

@@ -12,12 +12,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="white">
     <meta name="format-detection" content="telephone=no">
-    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}"/>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
-    <link rel="stylesheet" th:href="@{/css/jquery.toast.css}">
-    <link rel="stylesheet" th:href="@{/css/index.css}">
-    <script type="text/javascript" th:src="@{/js/jquery-1.11.0.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/jquery.toast.js}"></script>
+    <link rel="icon" type="image/x-icon" th:href="@{/appPublish/images/favicon.ico}"/>
+    <link rel="stylesheet" th:href="@{/appPublish/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/appPublish/css/jquery.toast.css}">
+    <link rel="stylesheet" th:href="@{/appPublish/css/index.css}">
+    <script type="text/javascript" th:src="@{/appPublish/js/jquery-1.11.0.min.js}"></script>
+    <script type="text/javascript" th:src="@{/appPublish/js/jquery.toast.js}"></script>
 
     <title>ログイン</title>
 </head>
@@ -63,12 +63,12 @@
         $.ajax({
             type: "POST",
             contentType: "application/json;charset=UTF-8",
-            url: "/account/login",
+            url: "/appPublish/account/login",
             data: JSON.stringify(data),
             dataType: 'json',
             success: function(result) {
                 if (result.code == 0) {
-                    window.location.href = "/apps"
+                    window.location.href = "/appPublish/apps"
                 }else{
                     $.toast({text: result.msg, icon: 'error'});
                 }
