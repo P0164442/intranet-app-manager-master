@@ -51,6 +51,8 @@ public class PathManager {
 
             //如果上传目录为/static/upload/，则可以如下获取：
             File upload = new File(path.getAbsolutePath(), "static/upload/");
+            System.out.println(upload.getPath());
+
             if (!upload.exists()) upload.mkdirs();
             return upload.getPath();
         } catch (Exception e) {
@@ -137,15 +139,15 @@ public class PathManager {
             }
             int httpPort = Integer.parseInt(environment.getProperty("server.http.port"));
 //            int httpsPort = Integer.parseInt(environment.getProperty("server.port"));
-            int port =  httpPort;
-            String protocol =   "http";
+            int port = httpPort;
+            String protocol = "http";
 //            String protocol ="https";
             String portString = ":" + port;
             if (port == 80 || port == 443) {
                 portString = "";
             }
 
-            String baseURL = protocol + "://" + domain   + "/";
+            String baseURL = protocol + "://" + domain + "/";
 
             //解决重复读配置文件
             if (isHttps) {

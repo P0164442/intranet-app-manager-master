@@ -283,7 +283,7 @@ $(function () {
                 if (result.code != 0) {
                     $.toast({text: result.msg, icon: 'error'});
                 } else {
-                    window.location.href = "/apps"
+                    window.location.href = "appPublish/apps"
                 }
             }
         });
