@@ -38,7 +38,7 @@ public class PackageService {
 
             String packagePath = PathManager.getFullPath(aPackage);
             String tempIconPath = PathManager.getTempIconPath(aPackage);
-            String iconPath = "appPublish/"+packagePath + File.separator + "icon.png";
+            String iconPath =  packagePath + File.separator + "icon.png";
             String sourcePath = packagePath + File.separator + fileName;
 
             // 拷贝图标

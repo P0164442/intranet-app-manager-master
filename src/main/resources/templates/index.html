@@ -87,14 +87,14 @@
                             <img class="icon ng-isolate-scope" width="100" height="100" th:src="@{'/appPublish/' + ${app.icon}}"/>
                         </a>
                         <!-- ngIf: app.has_combo --><br>
-                        <p class="appname" th:data="@{${baseURL} + 'appPublish/apps/' + ${app.id}}">
+                        <p class="appname" th:data="@{${baseURL} + 'apps/' + ${app.id}}">
                             <i class="icon-owner"></i>
                             <span class="ng-binding_span">[[${app.name}]]</span></p>
                         <table>
                             <tbody>
                             <tr>
                                 <td class="ng-binding_td">URL:</td>
-                                <td><span class="ng-binding_span">[[${baseURL}]]appPublish/s/[[${app.shortCode}]]</span></td>
+                                <td><span class="ng-binding_span">[[${baseURL}]]s/[[${app.shortCode}]]</span></td>
                             </tr>
 <!--                            <tr>-->
 <!--                                <td class="ng-binding_td">Application ID:</td>-->
@@ -113,7 +113,7 @@
                         <div class="action">
                             <a class="ng-binding" th:href="'/appPublish/apps/' + ${app.id}">
                                 <i class="icon-pen"></i> 表示</a>
-                            <a th:href="@{${baseURL}+'appPublish/s/'+${app.shortCode}}" target="_blank" class="ng-binding">
+                            <a th:href="@{${baseURL}+'s/'+${app.shortCode}}" target="_blank" class="ng-binding">
                                 <i class="icon-eye"></i> ダウンロード</a>
 <!--                            <button class="btn btn-remove ng-scope" th:data="${app.id}">-->
 <!--                                <i class="icon icon-trash"></i>-->
