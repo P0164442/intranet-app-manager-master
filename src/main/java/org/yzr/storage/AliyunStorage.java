@@ -74,11 +74,9 @@ public class AliyunStorage implements IStorage {
     @Override
     public void store(InputStream inputStream, long contentLength, String contentType, String keyName) {
         try {
-            // 简单文件上传, 最大支持 5 GB, 适用于小文件上传, 建议 20M以下的文件使用该接口
             ObjectMetadata objectMetadata = new ObjectMetadata();
             objectMetadata.setContentLength(contentLength);
             objectMetadata.setContentType(contentType);
-            // 对象键（Key）是对象在存储桶中的唯一标识。
             PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, keyName, inputStream, objectMetadata);
             PutObjectResult putObjectResult = getOSSClient().putObject(putObjectRequest);
         } catch (Exception ex) {
