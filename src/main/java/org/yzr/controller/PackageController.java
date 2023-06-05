@@ -49,7 +49,7 @@ public class PackageController {
     private UserService userService;
 
     /**
-     * 预览页
+     * preview
      *
      * @param code
      * @param request
@@ -85,7 +85,7 @@ public class PackageController {
     }
 
     /**
-     * 设备列表
+     * devices
      *
      * @param id
      * @param request
@@ -99,7 +99,7 @@ public class PackageController {
     }
 
     /**
-     * 安装教程
+     *
      *
      * @param platform
      * @param request
@@ -112,7 +112,7 @@ public class PackageController {
     }
 
     /**
-     * 上传包
+     *
      *
      * @param file
      * @param request
@@ -129,14 +129,12 @@ public class PackageController {
                 user = (User) currentUser.getPrincipal();
             }
 
-            // 无用户信息不允许上传
             if (user == null) {
                 return ResponseUtil.unauthz();
             }
             String filePath = transfer(file);
             FileType fileType = FileUtil.getType(filePath);
             if (fileType == null || fileType != FileType.ZIP) {
-                // 文件类型错误
                 FileUtils.forceDelete(new File(filePath));
                 return ResponseUtil.badArgument();
             }
@@ -156,7 +154,7 @@ public class PackageController {
             App app = this.appService.savePackage(aPackage, user);
             // URL
             String codeURL = this.pathManager.getBaseURL(false) + "p/code/" + app.getCurrentPackage().getId();
-            // 发送WebHook消息
+
             WebHookClient.sendMessage(app, pathManager);
             return ResponseUtil.ok(codeURL);
         } catch (Exception e) {
@@ -166,7 +164,7 @@ public class PackageController {
     }
 
     /**
-     * 下载文件源文件(ipa 或 apk)
+     * download
      *
      * @param id
      * @param response
@@ -177,9 +175,8 @@ public class PackageController {
             Package aPackage = this.packageService.get(id);
             String path = PathManager.getFullPath(aPackage) + aPackage.getFileName();
             File file = new File(path);
-            if (file.exists()) { //判断文件父目录是否存在
+            if (file.exists()) {
                 response.setContentType("application/force-download");
-                // 文件名称转换
                 String fileName = aPackage.getName() + "_" + aPackage.getVersion();
                 String ext = "." + FilenameUtils.getExtension(aPackage.getFileName());
                 String appName = new String(fileName.getBytes("UTF-8"), "iso-8859-1");
@@ -203,7 +200,7 @@ public class PackageController {
     }
 
     /**
-     * 获取 manifest
+     *   manifest
      *
      * @param id
      * @param response
@@ -224,7 +221,7 @@ public class PackageController {
     }
 
     /**
-     * 获取包二维码
+     *  qr code
      *
      * @param id
      * @param response
@@ -243,7 +240,7 @@ public class PackageController {
     }
 
     /**
-     * 删除包
+     *  
      *
      * @param id
      * @return
@@ -256,17 +253,17 @@ public class PackageController {
         try {
             this.packageService.deleteById(id);
             map.put("success", true);
-            map.put("msg", "消除成功");
+            map.put("msg", "削除成功");
 
         } catch (Exception e) {
             map.put("success", false);
-            map.put("msg", "消除失敗");
+            map.put("msg", "削除失敗");
         }
         return map;
     }
 
     /**
-     * 转存文件
+     *
      *
      * @param srcFile
      * @return
@@ -274,12 +271,9 @@ public class PackageController {
     private String transfer(MultipartFile srcFile) {
         try {
 
-            // 获取文件后缀
             String fileName = srcFile.getOriginalFilename();
             String ext = FilenameUtils.getExtension(fileName);
-            // 生成文件名
             String newFileName = UUID.randomUUID().toString() + "." + ext;
-            // 转存到 tmp
             String destPath = FileUtils.getTempDirectoryPath() + File.separator + newFileName;
             destPath = destPath.replaceAll("//", "/");
             srcFile.transferTo(new File(destPath));

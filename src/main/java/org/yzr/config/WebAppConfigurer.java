@@ -43,9 +43,4 @@ public class WebAppConfigurer extends WebMvcConfigurationSupport {
 
     }
 
-//    @Override
-//    protected void addViewControllers(ViewControllerRegistry registry) {
-//        registry.addViewController("/").setViewName("forward:/apps");
-//        super.addViewControllers(registry);
-//    }
 }

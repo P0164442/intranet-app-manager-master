@@ -97,7 +97,7 @@ public class AppController {
             AppViewModel viewModel = this.appService.getById(id);
             if (viewModel.getUserId().equals(user.getId())) {
                 this.appService.deleteById(id);
-                return ResponseUtil.ok("消除成功");
+                return ResponseUtil.ok("削除成功");
             }
             return ResponseUtil.unauthz();
         } catch (Exception e) {

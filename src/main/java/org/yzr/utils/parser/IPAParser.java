@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class IPAParser implements PackageParser {
-    /*获取 APP 路径*/
+
     private static String appPath(String path) {
         try {
             String payloadPath = path + File.separator + "Payload";
@@ -43,7 +43,7 @@ public class IPAParser implements PackageParser {
         return null;
     }
 
-    // 获取 APP 图标
+
     private static String appIcon(String appPath, String iconName) {
         List<String> iconNames = new ArrayList<>();
         File appFile = new File(appPath);
@@ -67,7 +67,7 @@ public class IPAParser implements PackageParser {
         Provision provision = new Provision();
         String profile = appPath + File.separator + "embedded.mobileprovision";
         File profileFile = new File(profile);
-        // 文件不存在
+
         if (!profileFile.exists()) {
             provision.setType("Release");
             return provision;
@@ -116,15 +116,12 @@ public class IPAParser implements PackageParser {
     public Package parse(String filePath) {
         try {
             Package aPackage = new Package();
-            // 解压 IPA 包
             String targetPath = ZipUtil.unzip(filePath);
             String appPath = appPath(targetPath);
             String infoPlistPath = appPath + File.separator + "Info.plist";
             infoPlistPath = infoPlistPath.replaceAll("//", "/");
             File infoPlistFile = new File(infoPlistPath);
-            // Plist 文件获取失败
             if (!infoPlistFile.exists()) return null;
-            // 获取 infoPlist
             Plist plist = Plist.parseWithFile(infoPlistFile);
             InfoPlist  infoPlist = new InfoPlist(plist);
             File ipaFile = new File(filePath);
@@ -138,16 +135,13 @@ public class IPAParser implements PackageParser {
             aPackage.setCreateTime(System.currentTimeMillis());
             aPackage.setPlatform("ios");
 
-            // 获取应用图标
             String iconName = infoPlist.getIconName();
             String iconPath = appIcon(appPath, iconName);
             String iconTempPath = PathManager.getTempIconPath(aPackage);
             PNGConverter.convert(iconPath, iconTempPath);
 
-            // 解析 Provision
             aPackage.setProvision(getProvision(appPath));
 
-            // 清除目录
             FileUtils.deleteDirectory(new File(targetPath));
             return aPackage;
         } catch (Exception e) {

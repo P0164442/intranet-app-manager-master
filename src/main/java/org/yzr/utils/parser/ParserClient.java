@@ -6,8 +6,8 @@ import org.yzr.model.Package;
 public class ParserClient {
 
     /**
-     * 解析包
-     * @param filePath 文件路径
+     *
+     * @param filePath
      * @return
      */
     public static Package parse(String filePath) throws ClassNotFoundException {
@@ -19,13 +19,13 @@ public class ParserClient {
     }
 
     /**
-     * 根据文件后缀名获取解析器
+     *
      * @param filePath
      * @return
      */
     private static PackageParser getParser(String filePath) throws ClassNotFoundException {
         String extension = FilenameUtils.getExtension(filePath);
-        // 动态获取解析器
+        //
         Class aClass = Class.forName("org.yzr.utils.parser." + extension.toUpperCase()+"Parser");
         try {
             PackageParser packageParser = (PackageParser)aClass.newInstance();

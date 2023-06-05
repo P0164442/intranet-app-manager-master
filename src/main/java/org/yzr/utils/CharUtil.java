@@ -3,9 +3,9 @@ package org.yzr.utils;
 import java.util.Random;
 
 public class CharUtil {
-    // 所有编码
+    //
     private static final String ALL_CODE = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    // 随机种子
+    //
     private static Random random = new Random();
 
     public static String generate(int length) {

@@ -24,7 +24,7 @@ public class WebHookController {
     private WebHookService webHookService;
 
     /**
-     * 添加webHook
+     *
      * @param viewModel
      * @param request
      * @return
@@ -43,7 +43,7 @@ public class WebHookController {
     }
 
     /**
-     * 删除webHook
+     *
      * @param viewModel
      * @param request
      * @return
@@ -62,7 +62,7 @@ public class WebHookController {
     }
 
     /**
-     * 修改webHook
+     *
      * @param viewModel
      * @param request
      * @return
@@ -82,7 +82,7 @@ public class WebHookController {
 
 
     /**
-     * 获取 webHook 列表
+     *
      * @param id
      * @param request
      * @return

@@ -51,9 +51,9 @@ public class StorageController {
     }
 
     /**
-     * 访问存储对象
      *
-     * @param key 存储对象key
+     *
+     * @param key
      * @return
      */
     @GetMapping("/fetch/{key:.+}")
@@ -76,9 +76,9 @@ public class StorageController {
     }
 
     /**
-     * 访问存储对象
      *
-     * @param key 存储对象key
+     *
+     * @param key
      * @return
      */
     @GetMapping("/download/{key:.+}")

@@ -19,9 +19,9 @@ public class DingDingWebHook implements IWebHook {
 
     private static OkHttpClient client = new OkHttpClient();
     /**
-     * 发送钉钉消息
-     * @param jsonString 消息内容
-     * @param webhook 钉钉自定义机器人webhook
+     *
+     * @param jsonString
+     * @param webhook
      * @return
      */
     private static boolean sendToDingding(String jsonString, String webhook) {
@@ -61,10 +61,10 @@ public class DingDingWebHook implements IWebHook {
         String appInfo = String.format("[%s(%s)更新](%s)", app.getName(), platform, appURL);
 
         String iconPath = PathManager.getFullPath(app.getCurrentPackage())  + "icon.png";
-        // 将图片转为 base64, 内网 ip 钉钉无法访问，直接给图片数据
+
         String codePath =  PathManager.getFullPath(app.getCurrentPackage())  + "code.jpg";
         File codeFile = new File(codePath);
-        // 图片不存在，生成图片
+
         if (!codeFile.exists()) {
             QRCodeUtil.encode(currentPackageURL).withSize(150, 150).withIcon(new File(iconPath)).writeTo(new File(codePath));
         }
@@ -88,7 +88,7 @@ public class DingDingWebHook implements IWebHook {
     }
 
     /**
-     * 获取扩展消息
+     *
      * @return
      */
     private String getPackageMessage(Package aPackage) {
@@ -96,11 +96,11 @@ public class DingDingWebHook implements IWebHook {
         if (StringUtils.hasLength(aPackage.getExtra())) {
             Map<String, String> extra = (Map<String, String>) JSON.parse(aPackage.getExtra());
             if (extra.containsKey("jobName")) {
-                message += "任务名:" + extra.get("jobName");
+                message += "ジョブ名:" + extra.get("jobName");
             }
 
             if (extra.containsKey("buildNumber")) {
-                message += " 编号:#" + extra.get("buildNumber");
+                message += " 番号:#" + extra.get("buildNumber");
             }
         }
         return message;

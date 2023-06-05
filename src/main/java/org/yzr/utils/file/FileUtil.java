@@ -7,7 +7,7 @@ import java.io.InputStream;
 
 public class FileUtil {
     /**
-     * 判断文件类型
+     *
      */
     public static FileType getType(String filePath) throws IOException {
         // 获取文件头
@@ -25,7 +25,7 @@ public class FileUtil {
     }
 
     /**
-     * 读取文件头
+     *
      */
     private static String getFileHeader(String filePath) throws IOException {
         byte[] b = new byte[28];
@@ -44,7 +44,7 @@ public class FileUtil {
     }
 
     /**
-     * 将字节数组转换成16进制字符串
+     *
      */
     private static String bytesToHex(byte[] src) {
         StringBuilder stringBuilder = new StringBuilder("");

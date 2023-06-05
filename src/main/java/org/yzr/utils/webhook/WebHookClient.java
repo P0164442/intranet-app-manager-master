@@ -16,7 +16,7 @@ public class WebHookClient {
     }
 
     /**
-     * 向 webHook 发送消息
+     *
      * @param app
      * @param pathManager
      */
@@ -37,7 +37,7 @@ public class WebHookClient {
 
 
     /**
-     * 通过类型获取 WebHook 实现
+     *
      * @param webHookType
      * @return
      */
@@ -51,7 +51,7 @@ public class WebHookClient {
         }
 
         try {
-            // 动态获取 WebHook
+            //
             Class aClass = Class.forName("org.yzr.utils.webhook." + webHookType +"WebHook");
             iWebHook = (IWebHook) aClass.newInstance();
             webHookList.put(webHookType, iWebHook);

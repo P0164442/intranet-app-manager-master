@@ -13,14 +13,14 @@ import javax.imageio.ImageIO;
 public class ImageUtils {
 
     /**
-     * 将图片转换为 Base64
+     *   Base64
      * @param filePath
      * @return
      */
     public static String convertImageToBase64(String filePath) {
         InputStream in = null;
         byte[] data = null;
-        //读取图片字节数组
+        //
         try {
             in = new FileInputStream(filePath);
             data = new byte[in.available()];
@@ -31,12 +31,12 @@ public class ImageUtils {
         {
             e.printStackTrace();
         }
-        //对字节数组Base64编码
+        //
         return Base64Utils.encodeToString(data);
     }
 
     /**
-     * 重置图片大小
+     *
      * @param soureFilePath
      * @param targetFilePath
      * @param height
@@ -60,7 +60,7 @@ public class ImageUtils {
     }
 
     /**
-     * 将 PNG 转为 JPG 并指定图片大小
+     *
      * @param soureFilePath
      * @param targetFilePath
      * @param width

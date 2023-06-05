@@ -56,7 +56,7 @@ public class AliyunStorage implements IStorage {
     }
 
     /**
-     * 获取阿里云OSS客户端对象
+     *
      *
      * @return ossClient
      */
@@ -69,7 +69,7 @@ public class AliyunStorage implements IStorage {
     }
 
     /**
-     * 阿里云OSS对象存储简单上传实现
+     *
      */
     @Override
     public void store(InputStream inputStream, long contentLength, String contentType, String keyName) {

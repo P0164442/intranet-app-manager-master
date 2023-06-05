@@ -20,25 +20,25 @@ public class InfoPlist {
 
     public InfoPlist(Plist plist) {
         this.plist = plist;
-        // 应用名
+        //
         String appName = this.plist.stringValueForKeyPath("CFBundleDisplayName");
         if (appName == null) {
             appName = this.plist.stringValueForKeyPath("CFBundleName");
         }
         this.appName = appName;
-        // 主版本号
+        //
         String version = this.plist.stringValueForPath("CFBundleShortVersionString");
         this.version = version;
-        // 构建版本号
+        //
         String buildVersion = this.plist.stringValueForPath("CFBundleVersion");
         this.buildVersion = buildVersion;
-        // 应用ID
+        //
         String bundleID = this.plist.stringValueForPath("CFBundleIdentifier");
         this.bundleID = bundleID;
-        // 系统最低版本号
+        //
         String minimumOSVersion = this.plist.stringValueForPath("MinimumOSVersion");
         this.minimumOSVersion = minimumOSVersion;
-        // 图标名称
+        //
         String iconName = this.plist.stringValueForPath("CFBundleIcons.CFBundlePrimaryIcon.CFBundleIconName");
         if (iconName == null) {
             iconName = this.plist.stringValueForKeyPath("CFBundleIconFile");

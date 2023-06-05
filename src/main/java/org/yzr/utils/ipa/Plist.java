@@ -29,7 +29,7 @@ public class Plist {
         return null;
     }
 
-    // 通过 keyPath 获取值
+    //
     public NSObject valueForKeyPath(String keyPath) {
         String[] values = keyPath.split("\\.");
         try {
