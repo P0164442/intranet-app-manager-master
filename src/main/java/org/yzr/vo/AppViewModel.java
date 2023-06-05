@@ -37,7 +37,7 @@ public class AppViewModel {
     private PackageViewModel currentPackage;
 
     /***
-     * 初始化是否加载列表
+     *
      * @param app
      * @param pathManager
      * @param loadList
@@ -58,7 +58,7 @@ public class AppViewModel {
         this.minVersion = aPackage.getMinVersion();
         this.currentPackage = new PackageViewModel(aPackage, pathManager);
         if (loadList) {
-            // 排序
+            //
             this.packageList = sortPackages(app.getPackageList(), pathManager);
         }
     }
@@ -91,7 +91,7 @@ public class AppViewModel {
     }
 
     private static List<PackageViewModel> sortPackages(List<Package> packages, PathManager pathManager) {
-        // 排序
+        //
         List<PackageViewModel> packageViewModels = new ArrayList<>();
         for (Package aPackage : packages) {
             PackageViewModel packageViewModel = new PackageViewModel(aPackage, pathManager);

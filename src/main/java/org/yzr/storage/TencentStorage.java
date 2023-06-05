@@ -19,7 +19,7 @@ import java.nio.file.Path;
 import java.util.stream.Stream;
 
 /**
- * 腾讯对象存储服务
+ *
  */
 public class TencentStorage implements IStorage {
 
@@ -66,9 +66,9 @@ public class TencentStorage implements IStorage {
 
     private COSClient getCOSClient() {
         if (cosClient == null) {
-            // 1 初始化用户身份信息(secretId, secretKey)
+            //
             COSCredentials cred = new BasicCOSCredentials(secretId, secretKey);
-            // 2 设置bucket的区域, COS地域的简称请参照 https://cloud.tencent.com/document/product/436/6224
+            //
             ClientConfig clientConfig = new ClientConfig(new Region(region));
             cosClient = new COSClient(cred, clientConfig);
         }
@@ -83,12 +83,10 @@ public class TencentStorage implements IStorage {
     @Override
     public void store(InputStream inputStream, long contentLength, String contentType, String keyName) {
         try {
-            // 简单文件上传, 最大支持 5 GB, 适用于小文件上传, 建议 20M以下的文件使用该接口
+
             ObjectMetadata objectMetadata = new ObjectMetadata();
             objectMetadata.setContentLength(contentLength);
             objectMetadata.setContentType(contentType);
-            // 对象键（Key）是对象在存储桶中的唯一标识。例如，在对象的访问域名 `bucket1-1250000000.cos.ap-guangzhou.myqcloud.com/doc1/pic1.jpg`
-            // 中，对象键为 doc1/pic1.jpg, 详情参考 [对象键](https://cloud.tencent.com/document/product/436/13324)
             PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, keyName, inputStream, objectMetadata);
             getCOSClient().putObject(putObjectRequest);
         } catch (Exception ex) {

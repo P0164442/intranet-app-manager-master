@@ -8,10 +8,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tb_web_hook")
 public class WebHook {
-    // 钉钉
+    //
     public static final String WEB_HOOK_TYPE_DING_DING="DingDing";
 
-    // 主键
+    //
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")

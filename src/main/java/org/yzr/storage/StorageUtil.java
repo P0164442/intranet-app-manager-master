@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import java.util.stream.Stream;
 
 /**
- * 提供存储服务类，所有存储服务均由该类对外提供
+ *
  */
 public class StorageUtil {
     private String active;
@@ -35,12 +35,12 @@ public class StorageUtil {
     }
 
     /**
-     * 存储一个文件对象
      *
-     * @param inputStream   文件输入流
-     * @param contentLength 文件长度
-     * @param contentType   文件类型
-     * @param fileName      文件索引名
+     *
+     * @param inputStream
+     * @param contentLength
+     * @param contentType
+     * @param fileName
      */
     public Storage store(InputStream inputStream, long contentLength, String contentType, String fileName) {
         String key = generateKey(fileName);

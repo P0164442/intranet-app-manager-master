@@ -20,7 +20,7 @@ public class PNGConverter {
     private ArrayList<PNGTrunk> trunks = null;
 
     /**
-     * iOS PNG 图标转换
+     *
      * @param srcPath
      * @param destPath
      * @throws Exception
@@ -396,7 +396,7 @@ class PNGTrunk {
         return readInt(buffer, 0);
     }
 
-    public static int readInt(byte[] nDest, int nPos) { //读一个int
+    public static int readInt(byte[] nDest, int nPos) {
         return ((nDest[nPos++] & 0xFF) << 24)
                 | ((nDest[nPos++] & 0xFF) << 16)
                 | ((nDest[nPos++] & 0xFF) << 8)

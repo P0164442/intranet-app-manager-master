@@ -35,7 +35,6 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/error/unauthorized", "anon");
 
         filterChainDefinitionMap.put("/apps/**", "authc");
-        // 千叶本番demo需要basic认证
         // iOS
         filterChainDefinitionMap.put("/s/T9Fr", "authcBasic");
         // Android

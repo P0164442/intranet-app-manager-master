@@ -33,7 +33,7 @@ public class PackageService {
             aPackage.setApp(app);
 
             String fileName =  aPackage.getPlatform() + "." + FilenameUtils.getExtension(filePath);
-            // 更新文件名
+            //
             aPackage.setFileName(fileName);
 
             String packagePath = PathManager.getFullPath(aPackage);
@@ -41,14 +41,14 @@ public class PackageService {
             String iconPath =  packagePath + File.separator + "icon.png";
             String sourcePath = packagePath + File.separator + fileName;
 
-            // 拷贝图标
+            //
             ImageUtils.resize(tempIconPath, iconPath, 192, 192);
-            // 源文件
+            //
             FileUtils.copyFile(new File(filePath), new File(sourcePath));
 
-            // 删除临时图标
+            //
             FileUtils.forceDelete(new File(tempIconPath));
-            // 源文件
+            //
             FileUtils.forceDelete(new File(filePath));
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,7 +65,7 @@ public class PackageService {
     @Transactional
     public Package get(String id) {
         Package aPackage = this.packageDao.findById(id).get();
-        // 级联查询用户
+        //
         aPackage.getApp().getOwner().getId();
         return aPackage;
     }

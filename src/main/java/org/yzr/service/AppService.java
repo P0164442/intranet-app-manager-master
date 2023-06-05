@@ -37,7 +37,7 @@ public class AppService {
         app = this.appDao.save(app);
         app.getCurrentPackage();
         try {
-            // 触发级联查询
+            //
             app.getWebHookList().forEach(webHook -> {
             });
         } catch (Exception e) {
@@ -84,7 +84,7 @@ public class AppService {
             app.setShortCode(shortCode);
             app.setOwner(user);
         } else {
-            // 级联查询
+            //
             app.getPackageList().forEach(aPackage1 -> {
             });
             app.getWebHookList().forEach(webHook -> {
@@ -102,14 +102,14 @@ public class AppService {
         App app = this.appDao.findById(id).get();
         if (app != null) {
             this.appDao.deleteById(id);
-            // 消除整个 APP 目录
+
             String path = PathManager.getAppPath(app);
             PathManager.deleteDirectory(path);
         }
     }
 
     /**
-     * 通过 code 和 packageId 查询
+     *
      *
      * @param code
      * @param packageId

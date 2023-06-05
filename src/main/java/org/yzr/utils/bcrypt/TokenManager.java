@@ -8,10 +8,10 @@ public class TokenManager {
     static final String SECRET = "X-app-manager-Token";
 
     /**
-     * 生成token
      *
-     * @param username 用户名
-     * @param password 密码
+     *
+     * @param username
+     * @param password
      * @return
      */
     public static String generateToken(String username, String password) {

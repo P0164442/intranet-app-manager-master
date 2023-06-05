@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tb_perm")
 public class Permission {
-    // 主键
+
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")

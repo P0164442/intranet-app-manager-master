@@ -6,7 +6,7 @@ import java.util.GregorianCalendar;
 
 public class DateUtil {
     /**
-     * 获取毫秒时间戳
+     *
      *
      * @param date
      * @return

@@ -38,7 +38,7 @@ public class UserService {
     }
 
     /**
-     * 更新token
+     *
      *
      * @param user
      */
@@ -72,7 +72,7 @@ public class UserService {
         if (user != null) {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             if (!encoder.matches(password, user.getPassword())) return null;
-            // 级联查询
+            //
             user.getRoleList().forEach(role -> {
                 role.getPermissionList().forEach(permission -> {
                 });
@@ -183,7 +183,7 @@ public class UserService {
             user.setRoleList(roleList);
             updateToken(user);
             this.userDao.save(user);
-            // 创建普通用户
+            //
             username = environment.getProperty("ordinaryAdmin.username");
             password = environment.getProperty("ordinaryAdmin.password");
 

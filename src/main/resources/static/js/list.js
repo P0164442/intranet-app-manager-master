@@ -1,6 +1,4 @@
-/**
- * 获取 webHook 列表
- */
+
 function getWebHooks() {
     var appId = $("#appId").val();
     var url = "/appPublish/webHook/find/" + appId;
@@ -17,10 +15,7 @@ function getWebHooks() {
     });
 }
 
-/**
- * 编辑 webHook
- * @param e
- */
+
 function editWebHook(e) {
     var id = $("#webHookId").val();
     if (id.length > 0) {
@@ -44,9 +39,7 @@ function editWebHook(e) {
     }
 }
 
-/**
- * 获取包列表
- */
+
 function getPackageList() {
     var appId = $("#appId").val();
     var url = "/appPublish/packageList/" + appId;
@@ -124,7 +117,7 @@ function getPackageList() {
 }
 
 /**
- * 构造数据
+ *
  * @returns {{appId: (*|jQuery|string|undefined), name: (*|jQuery|string|undefined), id: (*|jQuery|string|undefined), url: (*|jQuery|string|undefined)}}
  */
 function buildData() {
@@ -141,9 +134,7 @@ function buildData() {
     return data;
 }
 
-/**
- * 重置 webHook 表单
- */
+
 function resetForm() {
     $("#ding-ding-web-hook-name").val('');
     $("#ding-ding-web-hook-url").val('');
@@ -162,30 +153,22 @@ function resetForm() {
     $("#webHookAdd").attr("disabled", "disabled");
 }
 
-/**
- * 添加 webHook
- */
+
 function add() {
     postWithURL("/appPublish/webHook/add")
 }
 
-/**
- * 更新 webHook
- */
+
 function update() {
     postWithURL("/appPublish/webHook/update")
 }
 
-/**
- * 删除 webHook
- */
+
 function remove() {
     postWithURL("/appPublish/webHook/delete")
 }
 
-/**
- * 发送请求
- */
+
 function postWithURL(url) {
     var data = buildData();
     resetForm();
@@ -194,9 +177,7 @@ function postWithURL(url) {
     });
 }
 
-/**
- * 切换面板时样式清除
- */
+
 function removeAllPanelClass() {
     $("#info-container").removeClass("app-info");
     $("#info-container").removeClass("app-integration");
@@ -209,9 +190,7 @@ function removeAllPanelClass() {
     $("#app-integration-panel").removeClass("ng-hide");
 }
 
-/**
- * 绑定事件
- */
+
 function bindActions() {
     $(".download-action").click(function () {
         window.open($(this).val())

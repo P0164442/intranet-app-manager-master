@@ -21,7 +21,7 @@ public class PathManager {
     private String httpBaseURL;
 
     /**
-     * 获取图标的临时路径
+     *
      *
      * @param aPackage
      * @return
@@ -39,7 +39,7 @@ public class PathManager {
     }
 
     /**
-     * 获取上传路径
+     *
      *
      * @return
      */
@@ -62,7 +62,7 @@ public class PathManager {
     }
 
     /**
-     * 获取 APP 路径
+     *
      *
      * @param app
      * @return
@@ -72,7 +72,7 @@ public class PathManager {
     }
 
     /**
-     * 获取包的完整路径
+     *
      *
      * @param aPackage
      * @return
@@ -82,7 +82,7 @@ public class PathManager {
     }
 
     /**
-     * 获取包的相对路径
+     *
      *
      * @param aPackage
      * @return
@@ -98,7 +98,7 @@ public class PathManager {
     }
 
     /**
-     * 清除目录
+     *
      *
      * @param path
      */
@@ -114,7 +114,7 @@ public class PathManager {
     }
 
     /**
-     * 获取基础路径
+     *
      *
      * @param isHttps
      * @return
@@ -141,7 +141,6 @@ public class PathManager {
 //            int httpsPort = Integer.parseInt(environment.getProperty("server.port"));
             int port = httpPort;
             String protocol = "http";
-//            String protocol ="https";
             String portString = ":" + port;
             if (port == 80 || port == 443) {
                 portString = "";
@@ -149,7 +148,7 @@ public class PathManager {
 
             String baseURL = protocol + "://" + domain + "/";
 
-            //解决重复读配置文件
+
             if (isHttps) {
                 httpsBaseURL = baseURL;
             } else {
@@ -164,7 +163,7 @@ public class PathManager {
     }
 
     /**
-     * 获取包所在路径
+     *
      *
      * @param aPackage
      * @param isHttps
@@ -178,7 +177,7 @@ public class PathManager {
     }
 
     /**
-     * 获取证书路径
+     *
      *
      * @return
      */
