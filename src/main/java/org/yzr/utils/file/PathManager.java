@@ -140,7 +140,7 @@ public class PathManager {
             int httpPort = Integer.parseInt(environment.getProperty("server.http.port"));
 //            int httpsPort = Integer.parseInt(environment.getProperty("server.port"));
             int port = httpPort;
-            String protocol = "https";
+            String protocol = "http";
             String portString = ":" + port;
             if (port == 80 || port == 443) {
                 portString = "";
